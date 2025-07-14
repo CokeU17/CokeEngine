@@ -374,12 +374,20 @@
   <ItemGroup />
   <ItemGroup>
     <ClCompile Include="CokeEngine.cpp" />
+    <ClCompile Include="GraphicsDevice.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CokeEngine.fx" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GraphicsDevice.h" />
+    <ClInclude Include="Renderer.h" />
     <CLInclude Include="resource.h" />
+    <ClInclude Include="SimpleVertex.h" />
+    <ClInclude Include="Window.h" />
     <ResourceCompile Include="CokeEngine.rc" />
   </ItemGroup>
   <ItemGroup>
