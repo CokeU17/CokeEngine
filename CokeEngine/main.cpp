@@ -1,32 +1,36 @@
-#include "Window.h"
-#include "GraphicsDevice.h"
-#include "Renderer.h"
+#pragma once
+#include <d3d11.h>
+#include <DirectXMath.h>
+using namespace DirectX;
 
-int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int)
+struct SimpleVertex
 {
-    // Crear ventana
-    Window window(hInstance, 1280, 720, L"CokeEngine - Ventana Principal");
+    XMFLOAT3 Pos;
+    XMFLOAT4 Color;
+};
 
-    // Iniciar dispositivo gráfico
-    GraphicsDevice graphics(window.GetHWND());
+class Renderer
+{
+public:
+    Renderer(ID3D11Device* device, ID3D11DeviceContext* context);
 
-    // Crear renderer y shaders
-    Renderer renderer(graphics.GetDevice());
-    renderer.CreateShaders();
-    renderer.CreateCubeBuffers();  // IMPORTANTE: No olvides llamar aquí
+    void Initialize();
+    void Render();
+    void CreateCubeBuffers();
 
-    bool running = true;
-    while (running)
-    {
-        running = window.ProcessMessages();
+    XMMATRIX m_world;
+    XMMATRIX m_view;
+    XMMATRIX m_projection;
 
-        graphics.ClearRenderTarget(0.2f, 0.4f, 0.9f, 1.0f);
+private:
+    ID3D11Device* device;
+    ID3D11DeviceContext* context;
 
-        renderer.Render(graphics.GetContext());  // Dibuja aquí el cubo
+    ID3D11Buffer* vertexBuffer;
+    ID3D11Buffer* indexBuffer;
+    UINT indexCount;
 
-        graphics.Present();
-    }
-
-    renderer.Cleanup();
-    return 0;
-}
+    ID3D11VertexShader* m_vertexShader;
+    ID3D11PixelShader* m_pixelShader;
+    ID3D11InputLayout* m_inputLayout;
+};
