@@ -8,7 +8,8 @@ GraphicsDevice::GraphicsDevice(ID3D11Device* device, ID3D11DeviceContext* contex
 
 void GraphicsDevice::RenderFrame(Renderer* renderer, float angle)
 {
-    renderer->m_world = XMMatrixRotationY(angle);
+    XMMATRIX rotation = XMMatrixRotationY(angle);
+    renderer->SetWorldMatrix(rotation);
 
-    renderer->Render(m_context);
+    renderer->Render();
 }

@@ -1,22 +1,20 @@
 #pragma once
 #include <d3d11.h>
 #include <DirectXMath.h>
+
 using namespace DirectX;
 
-struct SimpleVertex
-{
-    XMFLOAT3 Pos;
-    XMFLOAT4 Color;
-};
-
-class Renderer
-{
+class Renderer {
 public:
     Renderer(ID3D11Device* device, ID3D11DeviceContext* context);
 
     void Initialize();
     void CreateCubeBuffers();
-    void Render();
+    void Render(ID3D11DeviceContext* context);
+
+    void SetWorldMatrix(const XMMATRIX& matrix) { m_world = matrix; }
+    void SetViewMatrix(const XMMATRIX& matrix) { m_view = matrix; }
+    void SetProjectionMatrix(const XMMATRIX& matrix) { m_projection = matrix; }
 
 private:
     ID3D11Device* device;
