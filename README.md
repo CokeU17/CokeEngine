@@ -1,2 +1,6 @@
-# WildvineEngine
-Este es un compendio de las clases vistas en la materia de Graficas Computacionales 3D, Generacion 2026-01
+# CokeEngine
+**Autor:** Ángel Teráb  
+**Materia:** Arquitectura de Motores Gráficos   
+
+## Descripción
+Creado para la materia de arquitectura de motores graficos
